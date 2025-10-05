@@ -50,8 +50,11 @@ select c.id
 from customer c left join "order" o on c.id = o.customer_id
 where o.id is null;
 
+-- удаляем беззаказных
 delete from customer where id in (
     select c.id
     from customer c left join "order" o on c.id = o.customer_id
     where o.id is null
 );
+
+update product set quantity = quantity + 100 where id = 1
